@@ -1,6 +1,7 @@
 package com.atuka.eurekaserver.managecustomer.Customerconfig;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
@@ -9,11 +10,13 @@ import org.springframework.web.client.RestTemplate;
 public class CustomerConfiguration {
 
     @Bean
-    public RestTemplate restTemplate(){
+    @LoadBalanced
+    public RestTemplate restTemplate() {
         return new RestTemplate();
     }
+
     @Bean
-    public ModelMapper modelMapperBean(){
+    public ModelMapper modelMapperBean() {
         return new ModelMapper();
     }
 }

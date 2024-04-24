@@ -1,6 +1,6 @@
 package com.atuka.eurekaserver.fraud.Controller;
 
-import com.atuka.eurekaserver.fraud.Respose.FraudCheckResponse;
+import com.atuka.clients.faurd.Respose.FraudCheckResponse;
 import com.atuka.eurekaserver.fraud.Service.FraudCheckHistoryService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
