@@ -19,7 +19,8 @@
         <module>fraud</module>
         <module>eurekaserver</module>
         <module>clients</module>
-        <module>ClientModule</module>
+        <module>clients</module>
+        <module>notificationmodule</module>
     </modules>
     <properties>
         <java.version>22</java.version>
@@ -73,6 +74,7 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
+
         </dependency>
     </dependencies>
     <build>
