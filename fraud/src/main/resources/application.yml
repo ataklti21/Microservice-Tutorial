@@ -6,7 +6,7 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     password: root
-    url: jdbc:postgresql://172.18.0.2:5432/fraud
+    url: jdbc:postgresql://172.18.0.3:5432/fraud
     username: postgres
   jpa:
     hibernate:
