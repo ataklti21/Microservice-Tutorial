@@ -21,6 +21,7 @@
         <module>clients</module>
         <module>clients</module>
         <module>notificationmodule</module>
+        <module>Apigw</module>
     </modules>
     <properties>
         <java.version>22</java.version>
@@ -82,10 +83,7 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
-        <dependency>
-            <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-tracing</artifactId>
-        </dependency>
+
     </dependencies>
     <build>
         <pluginManagement>

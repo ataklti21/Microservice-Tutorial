@@ -19,7 +19,7 @@ public class NotificationController {
     @PostMapping
     public void sendNotification(@RequestBody
                                      NotificationRequest notificationRequest){
-        log.info("New notification {}",notificationRequest);
+        log.info("New notification Created{}",notificationRequest);
         notificationService.send(notificationRequest);
     }
 }

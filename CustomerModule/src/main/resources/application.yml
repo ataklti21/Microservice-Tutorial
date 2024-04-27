@@ -6,7 +6,7 @@ spring:
     datasource:
         driver-class-name: org.postgresql.Driver
         password: root
-        url: jdbc:postgresql://172.18.0.3:5432/Customer
+        url: jdbc:postgresql://172.18.0.2:5432/Customer
         username: postgres
     jpa:
         hibernate:
@@ -15,9 +15,15 @@ spring:
             hibernate:
                 format_sql: true
         show-sql: true
+    zipkin:
+      base-url: http://localhost:9411
 eureka:
     client:
         service-url:
           defaultZone: http://localhost:8761/eureka
     fetch-registry: true
     register-with-eureka: true
+management:
+  tracing:
+    sampling:
+      probability: 1.0
