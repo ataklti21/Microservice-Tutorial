@@ -28,7 +28,7 @@ public class CustomerService {
         //todo:check if email not taken
         //todo:check if fraudster
 
-        //store customer db
+        //persisting  customer
         repository.saveAndFlush(customer);
 
         FraudCheckResponse fraudCheckResponse = fraudClient.isFraudster(customer.getCustomerId());
@@ -38,7 +38,7 @@ public class CustomerService {
                 new NotificationRequest(
                         customer.getCustomerId(),
                         customer.getEmailAddress(),
-                        String.format("Hi %S welcome to com.atuka", customer.getFirstName())));
+                        String.format("Hi %S welcome to com.Atuka", customer.getFirstName())));
         assert fraudCheckResponse != null;
         if (fraudCheckResponse.isFraudster()) {
             throw new IllegalStateException("Customer is fraudulent ");

@@ -1,28 +1,30 @@
 server:
-  port: 8083
+    port: 8082
 spring:
-  application:
-    name: notification
-  zipkin:
-    base-url: http://localhost:9411
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    password: root
-    url: jdbc:postgresql://172.18.0.2:5432/notification
-    username: postgres
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
-    properties:
-      hibernate:
-        format_sql: true
-    show-sql: true
+    application:
+        name: notification
+    datasource:
+        password: root
+        url: jdbc:postgresql://localhost:5432/notification
+        username: postgres
+    jpa:
+        hibernate:
+            ddl-auto: create-drop
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+                format_sql: true
+        show-sql: true
+    zipkin:
+        base-url: http://localhost:9411
+
 eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-    fetch-registry: true
-    register-with-eureka: true
+    client:
+        service-url:
+            defaultZone: http://localhost:8761/eureka
+        fetch-registry: true
+        register-with-eureka: true
+        enabled: true
 management:
   tracing:
     sampling:
