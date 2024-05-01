@@ -28,3 +28,10 @@ management:
   tracing:
     sampling:
       probability: 1.0
+rabbitmq:
+  exchanges:
+    internal: internal.exchange
+  queues:
+    notification: notification.queue
+  routing-keys:
+    internal-notification: internal.notification.routing-key
