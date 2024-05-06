@@ -1,4 +1,4 @@
-package com.atuka.eurekaserver.managecustomer.Customerconfig;
+package com.atuka.managecustomer.Customerconfig;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;

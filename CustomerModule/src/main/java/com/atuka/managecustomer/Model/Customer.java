@@ -1,4 +1,4 @@
-package com.atuka.eurekaserver.managecustomer.Model;
+package com.atuka.managecustomer.Model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

@@ -1,6 +1,6 @@
-package com.atuka.eurekaserver.managecustomer.Repository;
+package com.atuka.managecustomer.Repository;
 
-import com.atuka.eurekaserver.managecustomer.Model.Customer;
+import com.atuka.managecustomer.Model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

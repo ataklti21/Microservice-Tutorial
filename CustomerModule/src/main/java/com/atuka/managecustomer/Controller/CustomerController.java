@@ -1,8 +1,8 @@
-package com.atuka.eurekaserver.managecustomer.Controller;
+package com.atuka.managecustomer.Controller;
 
-import com.atuka.eurekaserver.managecustomer.Model.Customer;
-import com.atuka.eurekaserver.managecustomer.Request.CustomerRequest;
-import com.atuka.eurekaserver.managecustomer.Service.CustomerService;
+import com.atuka.managecustomer.Model.Customer;
+import com.atuka.managecustomer.Request.CustomerRequest;
+import com.atuka.managecustomer.Service.CustomerService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

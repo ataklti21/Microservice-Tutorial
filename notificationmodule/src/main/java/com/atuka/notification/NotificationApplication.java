@@ -1,12 +1,8 @@
 package com.atuka.notification;
 
-import com.atuka.amqp.RabbitMaMessageProducer;
-import com.atuka.notification.notificationConfig.NotificationConfig;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
 
 @SpringBootApplication(scanBasePackages =
@@ -18,13 +14,22 @@ public class NotificationApplication {
         SpringApplication.run(NotificationApplication.class, args);
     }
 
-    @Bean
-    CommandLineRunner commandLineRunner
-            (RabbitMaMessageProducer producer, NotificationConfig config) {
-
-        return args -> {
-            producer.publish("foo", config.getInternalExchange(),
-                    config.getInternalNotificationRoutingKey());
-        };
-    }
+//    @Bean
+//    CommandLineRunner commandLineRunner
+//            (RabbitMaMessageProducer producer, NotificationConfig config) {
+//
+//        return args -> {
+//            producer.publish(new customerDetail(1,"Abreha",
+//                            "Tesfay","abreha@gmail.com"), config.getInternalExchange(),
+//                    config.getInternalNotificationRoutingKey());
+//        };
+//    }
+//    record customerDetail(
+//          Integer customerId,
+//          String firstName,
+//          String lastName,
+//          String emailAddress
+//    ){
+//
+//    }
 }

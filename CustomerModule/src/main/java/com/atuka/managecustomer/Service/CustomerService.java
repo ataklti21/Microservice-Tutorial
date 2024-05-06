@@ -1,28 +1,29 @@
-package com.atuka.eurekaserver.managecustomer.Service;
+package com.atuka.managecustomer.Service;
 
+import com.atuka.amqp.RabbitMaMessageProducer;
 import com.atuka.clients.faurd.FraudClient;
-import com.atuka.clients.faurd.NotificationClient;
+
 import com.atuka.clients.faurd.Request.NotificationRequest;
 import com.atuka.clients.faurd.Respose.FraudCheckResponse;
-import com.atuka.eurekaserver.managecustomer.Model.Customer;
-import com.atuka.eurekaserver.managecustomer.Repository.CustomerRepository;
-import com.atuka.eurekaserver.managecustomer.Request.CustomerRequest;
+import com.atuka.managecustomer.Model.Customer;
+import com.atuka.managecustomer.Repository.CustomerRepository;
+import com.atuka.managecustomer.Request.CustomerRequest;
 import lombok.AllArgsConstructor;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+
 
 import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-
+@AutoConfiguration
 public class CustomerService {
     private final CustomerRepository repository;
-    private final RestTemplate restTemplate;
     private final FraudClient fraudClient;
-    private final NotificationClient notificationClient;
+    private final RabbitMaMessageProducer rabbitMaMessageProducer;
 
     public void registerCustomer(CustomerRequest request) {
         Customer customer = Customer.builder().firstName(request.firstName()).lastName(request.lastName()).emailAddress(request.emailAddress()).build();
@@ -35,17 +36,25 @@ public class CustomerService {
 
         FraudCheckResponse fraudCheckResponse = fraudClient.isFraudster(customer.getCustomerId());
         //send notification
-        //todo:Make this sync i.e add queue
-        notificationClient.sendNotification(new NotificationRequest(customer.getCustomerId(), customer.getEmailAddress(), String.format("Hi %S welcome to com.Atuka", customer.getFirstName())));
+        //Making this sync i.e add queue
+        NotificationRequest notificationRequest = new NotificationRequest(customer.getCustomerId(),
+                customer.getEmailAddress(),
+                String.format("Hi %S welcome to com.Atuka",
+                        customer.getFirstName()));
+
         assert fraudCheckResponse != null;
         if (fraudCheckResponse.isFraudster()) {
             throw new IllegalStateException("Customer is fraudulent ");
         }
+
+        rabbitMaMessageProducer.publish(notificationRequest,
+                "internal.exchange",
+                "internal.notification.routing-key");
     }
 
     /**
      * Getting Customer using customer Id
-     * @param id
+     * @param id customer id
      * @return a customer with the specified Id
      */
     public ResponseEntity<Customer> getCustomerById(Integer id) {
@@ -55,8 +64,8 @@ public class CustomerService {
 
     /**
      * Deletes customer using customer id
-     * @param customerId
-     * @return
+     * @param customerId customer id
+     * @return HttpStatus ok if there is no error but return notfound exception
      */
     public ResponseEntity<HttpStatus> deleteCustomerById(Integer customerId) {
         Optional<Customer> customer = repository.findById(customerId);

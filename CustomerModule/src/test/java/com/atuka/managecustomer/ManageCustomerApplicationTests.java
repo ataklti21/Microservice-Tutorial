@@ -1,4 +1,4 @@
-package com.atuka.eurekaserver.managecustomer;
+package com.atuka.managecustomer;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
