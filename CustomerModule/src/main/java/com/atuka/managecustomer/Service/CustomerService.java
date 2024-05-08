@@ -1,6 +1,8 @@
 package com.atuka.managecustomer.Service;
 
-import com.atuka.amqp.RabbitMaMessageProducer;
+
+
+import com.atuka.Rabbitamqp.RabbitMaMessageProducer;
 import com.atuka.clients.faurd.FraudClient;
 
 import com.atuka.clients.faurd.Request.NotificationRequest;
@@ -8,18 +10,19 @@ import com.atuka.clients.faurd.Respose.FraudCheckResponse;
 import com.atuka.managecustomer.Model.Customer;
 import com.atuka.managecustomer.Repository.CustomerRepository;
 import com.atuka.managecustomer.Request.CustomerRequest;
+
 import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-
 
 import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-@AutoConfiguration
+
 public class CustomerService {
     private final CustomerRepository repository;
     private final FraudClient fraudClient;

@@ -36,7 +36,7 @@ public class MessageExchangeConfiguration {
         return new Queue(this.notificationQueue,false);
     }
     //Binding Exchange and the queue using routing key
-    public Binding binding(Queue queue,Exchange exchange){
+    public Binding binding(Queue queue, Exchange exchange){
         return BindingBuilder.bind(queue).to(exchange).with(this.internalNotificationRoutingKey).noargs();
     }
 }

@@ -1,13 +1,13 @@
-package com.atuka.amqp;
+package com.atuka.Rabbitamqp;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.stereotype.Component;
 
-@AllArgsConstructor
-@Slf4j
 @Component
+@Slf4j
+@AllArgsConstructor
 public class RabbitMaMessageProducer {
     //injecting the AmqpTemplate
     public final AmqpTemplate amqpTemplate;

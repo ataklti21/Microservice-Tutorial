@@ -1,4 +1,4 @@
-package com.atuka.amqp;
+package com.atuka.Rabbitamqp;
 
 
 import lombok.AllArgsConstructor;

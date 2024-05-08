@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackages =
         {"com.atuka.notification",
-                "com.atuka.amqp"})
+                "com.atuka.Rabbitamqp"})
 public class NotificationApplication {
 
     public static void main(String[] args) {

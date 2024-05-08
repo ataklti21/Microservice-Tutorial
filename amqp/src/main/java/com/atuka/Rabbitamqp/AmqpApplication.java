@@ -1,4 +1,4 @@
-package com.atuka.amqp;
+package com.atuka.Rabbitamqp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
