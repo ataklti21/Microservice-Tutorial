@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.atuka</groupId>
     <artifactId>ManageCustomer</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>ManageCustomer</name>
     <description>ManageCustomer</description>
@@ -30,6 +30,7 @@
         <spring.dependecy.version>3.2.5</spring.dependecy.version>
         <maven-dependency-plugin.version>3.2.5</maven-dependency-plugin.version>
         <spring-cloud.version>2023.0.1</spring-cloud.version>
+        <image>ataklti21/${project.artifactId}:${project.version}</image>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -82,7 +83,6 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
-
         </dependency>
     </dependencies>
     <build>
@@ -96,6 +96,39 @@
                         <execution>
                             <goals>
                                 <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>com.google.cloud.tools</groupId>
+                    <artifactId>jib-maven-plugin</artifactId>
+                    <version>3.4.1</version>
+                    <configuration>
+                        <from>
+                            <image>eclipse-temurin:21</image>
+                            <platforms>
+                                <platform>
+                                    <architecture>arm64</architecture>
+                                    <os>linux</os>
+                                </platform>
+                                <platform>
+                                    <architecture>amd64</architecture>
+                                    <os>linux</os>
+                                </platform>
+                            </platforms>
+                        </from>
+                        <to>
+                            <tags>
+                                <tag>latest</tag>
+                            </tags>
+                        </to>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>build</goal>
                             </goals>
                         </execution>
                     </executions>

@@ -1,7 +1,5 @@
 package com.atuka.managecustomer.Service;
 
-
-
 import com.atuka.Rabbitamqp.RabbitMaMessageProducer;
 import com.atuka.clients.faurd.FraudClient;
 
@@ -10,12 +8,10 @@ import com.atuka.clients.faurd.Respose.FraudCheckResponse;
 import com.atuka.managecustomer.Model.Customer;
 import com.atuka.managecustomer.Repository.CustomerRepository;
 import com.atuka.managecustomer.Request.CustomerRequest;
-
 import lombok.AllArgsConstructor;
-import org.springframework.boot.autoconfigure.AutoConfiguration;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -33,11 +29,10 @@ public class CustomerService {
         //todo:check email is valid
         //todo:check if email not taken
         //todo:check if fraudster
-
         //persisting  customer
         repository.saveAndFlush(customer);
-
-        FraudCheckResponse fraudCheckResponse = fraudClient.isFraudster(customer.getCustomerId());
+        FraudCheckResponse fraudCheckResponse =
+                fraudClient.isFraudster(customer.getCustomerId());
         //send notification
         //Making this sync i.e add queue
         NotificationRequest notificationRequest = new NotificationRequest(customer.getCustomerId(),
