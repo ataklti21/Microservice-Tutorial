@@ -8,8 +8,9 @@
         <artifactId>ManageCustomer</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
+
     <packaging>jar</packaging>
-    <artifactId>Apigw</artifactId>
+    <artifactId>apigw</artifactId>
     <build>
         <plugins>
             <plugin>
@@ -36,8 +37,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-gateway -->
-
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>

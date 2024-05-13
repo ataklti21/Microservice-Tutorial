@@ -15,12 +15,12 @@
     <name>ManageCustomer</name>
     <description>ManageCustomer</description>
     <modules>
-        <module>CustomerModule</module>
+        <module>customermodule</module>
         <module>fraud</module>
         <module>eurekaserver</module>
         <module>clients</module>
         <module>notificationmodule</module>
-        <module>Apigw</module>
+        <module>apigw</module>
         <module>amqp</module>
     </modules>
     <properties>
@@ -85,13 +85,14 @@
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
     </dependencies>
+
     <build>
         <pluginManagement>
             <plugins>
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
-                    <version>${maven-dependency-plugin.version}</version>
+                    <version>${spring.boot.maven.plugin.version}</version>
                     <executions>
                         <execution>
                             <goals>
@@ -141,8 +142,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
                 <configuration>
-                    <source>17</source>
-                    <target>17</target>
+                    <source>22</source>
+                    <target>22</target>
                 </configuration>
             </plugin>
         </plugins>

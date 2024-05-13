@@ -31,14 +31,85 @@ services:
     container_name: zipkin
     ports:
       - "9411:9411"
+    networks:
+      -spring
   rabbitmq:
     image: rabbitmq:3-management
     container_name: rabbitmq
     ports:
       - "5672:5672"
       - "15672:15672"
+  eureka-server:
+    image: ataklti21/eureka-server-latest
+    container_name: eureka-server
+    ports:
+      - "8761-8761"
+    environment:
+      -SPRING-PROFILE-ACTIVE= docker
+    networks:
+      -spring
+    depends_on:
+      - zipkin
+  apigw:
+    image: ataklti21/apigw-latest
+    container_name: apigw
+    ports:
+      - "8183-8183"
+    environment:
+      -SPRING-PROFILE-ACTIVE= docker
+    depends_on:
+      - zipkin
+      - eureka-server
+    networks:
+      -spring
+  customer:
+    image: ataklti21/customermodule:latest
+    container_name: customermodule
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - spring
+      - postgres
+    depends_on:
+      - zipkin
+      - postgres
+      - rabbitmq
+  fraud:
+    image: ataklti21/fraud:latest
+    container_name:
+        fraud
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - spring
+      - postgres
+    depends_on:
+      - zipkin
+      - postgres
+      - rabbitmq
+  notification:
+    image: ataklti21/notification:latest
+    container_name:
+      notification
+    ports:
+     - "8082:8082"
+    environment:
+     - SPRING_PROFILES_ACTIVE=docker
+    networks:
+     - spring
+     - postgres
+    depends_on:
+     - zipkin
+     - postgres
+     - rabbitmq
 networks:
   postgres:
+    driver: bridge
+  spring:
     driver: bridge
 volumes:
   postgres:
